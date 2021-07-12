@@ -55,7 +55,7 @@ $content = '[{
 }]'
 
 $path = "$env:System_DefaultWorkingDirectory/TemplateParameters-$region.json"
-$jsonContent = $content | ConvertTo-Json
-Set-Content -Path $path -Value $jsonContent
+# $jsonContent = $content | ConvertTo-Json
+Set-Content -Path $path -Value $content
 
 Write-Host "content is $jsonContent"
