@@ -6,7 +6,7 @@ param (
 
 
 
-$content = [{
+$content = '[{
     "ParameterKey": "StackType",
     "ParameterValue": "Development"
 },{
@@ -54,7 +54,7 @@ $content = [{
 }, {
     "ParameterKey": "ELBSubnetIds",
     "ParameterValue": "$(ELBSubnetIds)"
-}]
+}]'
 
 
 Write-Host("the content of json will be--- START");
