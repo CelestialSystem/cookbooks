@@ -4,59 +4,58 @@ param (
     $region
   )
 
-
-
 $content = '[{
     "ParameterKey": "StackType",
-    "ParameterValue": "Development"
+    "ParameterValue": "Small"
 },{
     "ParameterKey": "10LansaGitRepoBranch",
-    "ParameterValue": "$(CookbooksBranchPreview)"
+    "ParameterValue": "$env:COOKBOOKSBRANCHPREVIEW"
 },{
     "ParameterKey": "UpdateManagementScripts",
     "ParameterValue": "Yes"
 },{
-    "ParameterKey": "$(DBPasswordKey)",
-    "ParameterValue": "$(DBPasswordValue)"
+    "ParameterKey": "$env:DBPASSWORDKEY",
+    "ParameterValue": "$env:DBPASSWORDVALUE"
 }, {
-    "ParameterKey": "$(WebPasswordKey)",
-    "ParameterValue": "$(WebPasswordValue)"
+    "ParameterKey": "$env:WEBPASSWORDKEY",
+    "ParameterValue": "$env:WEBPASSWORDVALUE"
 }, {
-    "ParameterKey": "$(KeyNameKey)",
-    "ParameterValue": "$(KeyNameValue)"
+    "ParameterKey": "$env:KEYNAMEKEY",
+    "ParameterValue": "$env:KEYNAMEVALUE"
 }, {
-    "ParameterKey": "$(RemoteAccessLocationKey)",
-    "ParameterValue": "$(RemoteAccessLocationValue)"
+    "ParameterKey": "$env:REMOTEACCESSLOCATIONKEY",
+    "ParameterValue": "$env:REMOTEACCESSLOCATIONVALUE"
 },{
-    "ParameterKey": "$(WebserverOSVersionKey)",
-    "ParameterValue": "$(WebserverOSVersionValue)",
+    "ParameterKey": "$env:WEBSERVEROSVERSIONKEY",
+    "ParameterValue": "$env:WEBSERVEROSVERSIONVALUE",
 }, {
-    "ParameterKey": "$(LansaMSIKey)",
-    "ParameterValue": "$(msiURLPrevious)"
+    "ParameterKey": "$env:LANSAMSIKEY",
+    "ParameterValue": "$env:MSIURLPREVIOUS"
 }, {
     "ParameterKey": "LansaVersion",
     "ParameterValue": "V14 SP2"
 }, {
     "ParameterKey": "11WebserverOSVersion",
-    "ParameterValue": "win2012"
+    "ParameterValue": "win2016"
 }, {
     "ParameterKey": "CurrentVPC",
-    "ParameterValue": "$(CurrentVPC)"
+    "ParameterValue": "$env:CURRENTVPC"
 }, {
     "ParameterKey": "AvailabilityZones",
-    "ParameterValue": "$(AvailabilityZones)"
+    "ParameterValue": "$env:AVAILABILITYZONES"
 }, {
     "ParameterKey": "NumberOfAZs",
-    "ParameterValue": "$(NumberOfAZs)"
+    "ParameterValue": "$env:NUMBEROFAZS"
 }, {
     "ParameterKey": "DBSubnetGroupName",
-    "ParameterValue": "$(DBSubnetGroupName)"
+    "ParameterValue": "$env:DBSUBNETGROUPNAME"
 }, {
     "ParameterKey": "ELBSubnetIds",
-    "ParameterValue": "$(ELBSubnetIds)"
+    "ParameterValue": "$env:ELBSUBNETIDS"
 }]'
 
+$path = "$env:System_DefaultWorkingDirectory/TemplateParameters-$region.json"
+$jsonContent = $content | ConvertTo-Json
+Set-Content -Path $path -Value $jsonContent
 
-Write-Host("the content of json will be--- START");
-Write-Host $content
-Write-Host("the content of json will be--- END");
+Write-Host "content is $jsonContent"
